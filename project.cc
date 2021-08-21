@@ -27,8 +27,8 @@ int main()
 		i*=2;
 	}
 	cout<<"二倍以后的值："<<endl;
-	for(auto i=b.cbegin();i!=b.cend();i++)
-		cout<<*i<<" ";
+	for(auto i:b)
+		cout<<i<<" ";
 	cout<<endl;
 	return 0;
 }
