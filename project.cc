@@ -1,34 +1,36 @@
 #include<iostream>
-#include<stdio.h>
 #include<vector>
 #include<iterator>
+#include<string>
+
 using namespace std;
 
 int main()
 {
+	string currstring,prestring=" ",maxstring;
+	int  currnu=1,maxnu=0;
+	while(cin>>currstring)
+	{
+		if(currstring == prestring)
+		{
+			++currnu;
+			if(currnu >maxnu)
+			{
+				maxnu = currnu;
+				maxstring = currstring;
+			}
+		}	
+		else
+		{
+			currnu=1;
 
-	int a[10];
-	vector<int>  b;
-	srand(time(NULL));
-	auto  *p1 =begin(a),*p2 =end(a);
-	while(p1!=p2)
-	{
-
-		*p1++=rand()%50;
+		}
+		
+		prestring = currstring;
 	}
-	cout<<"数组的值为："<<endl;
-	for(auto i:a)
-	{
-		b.push_back(i);
-		cout<<i<<" ";
-	}
-	for(auto &i:b)
-	{
-		i*=2;
-	}
-	cout<<"二倍以后的值："<<endl;
-	for(auto i:b)
-		cout<<i<<" ";
-	cout<<endl;
+	if(maxnu >1)
+		cout<<"最大重复单词为："<<maxstring<<"对应次数为："<<maxnu<<endl;
+	else
+		cout<<"任何单词都未连续出现过"<<endl;	
 	return 0;
 }
