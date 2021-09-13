@@ -1,36 +1,33 @@
-#include<iostream>
-#include<vector>
-#include<iterator>
-#include<string>
-
-using namespace std;
-
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
 int main()
 {
-	string currstring,prestring=" ",maxstring;
-	int  currnu=1,maxnu=0;
-	while(cin>>currstring)
+	int book[10];
+	srand(time(NULL));
+	printf("产生的10个随机数字为： \n");
+	for(int i =0;i<10;i++)
 	{
-		if(currstring == prestring)
-		{
-			++currnu;
-			if(currnu >maxnu)
-			{
-				maxnu = currnu;
-				maxstring = currstring;
-			}
-		}	
-		else
-		{
-			currnu=1;
-
-		}
-		
-		prestring = currstring;
+		int number = rand()%100;
+		book[i]=number;
+		printf("%d ",number);
 	}
-	if(maxnu >1)
-		cout<<"最大重复单词为："<<maxstring<<"对应次数为："<<maxnu<<endl;
-	else
-		cout<<"任何单词都未连续出现过"<<endl;	
+	printf("\n 排序以后的数字为：\n");
+	for(int i =1;i<9;i++)
+	{
+		for(int j =0;j<10-i;j++)
+		{
+			int temp;
+			if(book[j]<book[j+1])
+			{
+				temp = book[j];
+				book[j] = book[j+1];
+				book[j+1] = temp;
+			}
+		}
+	}
+	for(auto i:book)
+		printf("%d ",i);
+	printf("\n");
 	return 0;
 }

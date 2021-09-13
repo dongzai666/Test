@@ -1,23 +1,51 @@
 #include<iostream>
 #include<vector>
+#include<string>
+#include<cmath>
+#include<stdexcept>
 using namespace std;
+long long int fact(int nu);
 int main()
 {
-	vector<int> a{1,3,5,6,7},b{1,2,3};
-	auto c =a.cbegin(),d=b.cbegin();
-	while(c != a.cend() && d != b.cend())
+	int number;
+	cout<<"please cin one numbers:"<<endl;
+	while(cin>>number)
 	{
-		if(*c != *d)
-		{
-			cout<<"it`s not"<<endl;
-			break;	
+		try{
+			if(number<0)
+				throw runtime_error("error");
+			cout<<"结果是："<<fact(number)<<endl;
+			cout<<"是否继续输入计算：y/n?"<<endl;
+			char n;
+			cin>>n;
+			if(n == 'y')
+				;
+			if(n == 'n')
+				break;
 		}
-		++c;
-		++d;
-	}
-		if(c==a.cend())
-			cout<<"a是b的前缀"<<endl;
-		if(d==b.cend())	
-			cout<<"b是a的前缀"<<endl;
+		catch(runtime_error)
+		{
+			cout<<"存在小于零的无效输入，是否继续 y/n"<<endl;
+			char c;
+			cin>>c;
+			if(c == 'y')
+			{
+				cout<<"please cin one numbers:"<<endl;
+				continue;			
+			}
+			if(c == 'n')
+				break;
+		}
+	}	
 	return 0;
 }
+long long int fact(int nu)
+{
+	long long int ret =1;
+	while(nu>1)
+	{
+		ret*=nu--;	
+	}
+	return ret;
+}
+
